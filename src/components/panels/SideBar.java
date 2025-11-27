@@ -12,7 +12,7 @@ public class SideBar extends JPanel{
     public SideBar() {
         setPreferredSize(new Dimension(200, 600));
         setLayout(null);
-        setBackground(Color.BLACK);
+        setBackground(new Color(20, 21, 22));
 
         scanButton = new ScanButton("Scan");
         add(scanButton);

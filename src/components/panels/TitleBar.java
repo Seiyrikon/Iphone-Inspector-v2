@@ -19,7 +19,7 @@ public class TitleBar extends JPanel{
 
     private Point initialClick;
     public TitleBar() {
-        setBackground(Color.DARK_GRAY);
+        setBackground(new Color(56, 57, 58));
         setLayout(new BorderLayout());
 
         appTitle = new AppTitle("CellWeGo IPhone Inspector");

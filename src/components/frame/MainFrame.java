@@ -33,8 +33,6 @@ public class MainFrame extends JFrame {
         sideBar = new SideBar();
         bodyContainer = new BodyContainer();
 
-        titleBar.setOpaque(false);
-
         setContentPane(mainPanel);
 
         mainPanel.add(titleBar, BorderLayout.NORTH);

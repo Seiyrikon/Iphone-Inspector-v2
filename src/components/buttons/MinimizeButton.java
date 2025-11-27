@@ -22,13 +22,16 @@ public class MinimizeButton extends JButton {
 
         setPreferredSize(new Dimension(45, 30));
 
+        setOpaque(false);
+
         addMouseListener(new MouseAdapter() {
             public void mouseEntered(MouseEvent evt) {
+                setOpaque(true);
                 setBackground(Color.GRAY);
             }
 
             public void mouseExited(MouseEvent evt) {
-                setBackground(Color.DARK_GRAY);
+                setBackground(new Color(56, 57, 58));
             }
         });
 
