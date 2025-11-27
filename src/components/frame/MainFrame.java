@@ -1,0 +1,48 @@
+package components.frame;
+
+import java.awt.BorderLayout;
+import java.awt.Color;
+
+import javax.swing.BorderFactory;
+import javax.swing.JFrame;
+
+import components.panels.BodyContainer;
+import components.panels.MainPanel;
+import components.panels.SideBar;
+import components.panels.TitleBar;
+
+public class MainFrame extends JFrame {
+    TitleBar titleBar;
+    SideBar sideBar;
+    BodyContainer bodyContainer;
+    MainPanel mainPanel;
+
+    public MainFrame() {
+        setUndecorated(true);
+        setSize(800, 500);
+        setLocationRelativeTo(null);
+        setBackground(new Color(0, 0, 0, 0));
+
+        mainPanel = new MainPanel();
+
+        mainPanel.setLayout(new BorderLayout());
+        mainPanel.setOpaque(false);
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+
+        titleBar = new TitleBar();
+        sideBar = new SideBar();
+        bodyContainer = new BodyContainer();
+
+        titleBar.setOpaque(false);
+
+        setContentPane(mainPanel);
+
+        mainPanel.add(titleBar, BorderLayout.NORTH);
+        mainPanel.add(sideBar, BorderLayout.WEST);
+        mainPanel.add(bodyContainer, BorderLayout.CENTER);
+
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setVisible(true);
+    }
+
+}
