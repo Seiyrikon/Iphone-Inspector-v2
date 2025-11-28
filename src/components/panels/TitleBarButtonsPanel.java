@@ -8,18 +8,18 @@ import components.buttons.CloseButton;
 import components.buttons.MaximizeButton;
 import components.buttons.MinimizeButton;
 
-public class TitleBarButtons extends JPanel{
+public class TitleBarButtonsPanel extends JPanel{
     MinimizeButton minimizeButton;
     MaximizeButton maximizeButton;
     CloseButton closeButton;
 
-    public TitleBarButtons() {
+    public TitleBarButtonsPanel() {
         setLayout(new FlowLayout(FlowLayout.RIGHT, 0, 0));
         setOpaque(false);
 
-        minimizeButton = new MinimizeButton("_");
-        maximizeButton = new MaximizeButton("▢");
-        closeButton = new CloseButton("X");
+        minimizeButton = new MinimizeButton();
+        maximizeButton = new MaximizeButton();
+        closeButton = new CloseButton();
 
         add(minimizeButton);
         add(maximizeButton);

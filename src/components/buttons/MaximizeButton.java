@@ -9,9 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import utils.Constants;
+
 public class MaximizeButton extends JButton{
-    public MaximizeButton(String title) {
-        super(title);
+    public MaximizeButton() {
+        super(Constants.MAXIMIZE_BUTTON.get());
 
         setBackground(Color.DARK_GRAY);
         setForeground(Color.WHITE);

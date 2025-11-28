@@ -9,9 +9,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.SwingUtilities;
 
+import utils.Constants;
+
 public class MinimizeButton extends JButton {
-    public MinimizeButton(String title) {
-        super(title);
+    public MinimizeButton() {
+        super(Constants.MINIMIZE_BUTTON.get());
 
         setBackground(Color.DARK_GRAY);
         setForeground(Color.WHITE);

@@ -7,9 +7,11 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.JButton;
 
+import utils.Constants;
+
 public class CloseButton extends JButton {
-    public CloseButton(String title) {
-        super(title);
+    public CloseButton() {
+        super(Constants.CLOSE_BUTTON.get());
         addActionListener(e -> System.exit(0));
 
         setBackground(Color.DARK_GRAY);

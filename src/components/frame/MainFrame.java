@@ -6,15 +6,15 @@ import java.awt.Color;
 import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
-import components.panels.BodyContainer;
+import components.panels.BodyContainerPanel;
 import components.panels.MainPanel;
-import components.panels.SideBar;
-import components.panels.TitleBar;
+import components.panels.SideBarPanel;
+import components.panels.TitleBarPanel;
 
 public class MainFrame extends JFrame {
-    TitleBar titleBar;
-    SideBar sideBar;
-    BodyContainer bodyContainer;
+    TitleBarPanel titleBar;
+    SideBarPanel sideBar;
+    BodyContainerPanel bodyContainer;
     MainPanel mainPanel;
 
     public MainFrame() {
@@ -29,9 +29,9 @@ public class MainFrame extends JFrame {
         mainPanel.setOpaque(false);
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 
-        titleBar = new TitleBar();
-        sideBar = new SideBar();
-        bodyContainer = new BodyContainer();
+        titleBar = new TitleBarPanel();
+        sideBar = new SideBarPanel();
+        bodyContainer = new BodyContainerPanel();
 
         setContentPane(mainPanel);
 

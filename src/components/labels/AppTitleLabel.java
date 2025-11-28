@@ -6,9 +6,11 @@ import java.awt.Font;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 
-public class AppTitle extends JLabel{
-    public AppTitle(String title) {
-        super(title);
+import utils.Constants;
+
+public class AppTitleLabel extends JLabel{
+    public AppTitleLabel() {
+        super(Constants.APP_TITLE.get());
         setForeground(Color.WHITE);
         setBorder(BorderFactory.createEmptyBorder(0, 10, 0, 0));
         setFont(new Font("Segoe UI", Font.BOLD, 14));

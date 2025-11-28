@@ -11,21 +11,21 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
-import components.labels.AppTitle;
+import components.labels.AppTitleLabel;
 
-public class TitleBar extends JPanel{
-    AppTitle appTitle;
-    TitleBarButtons titleBarButtons;
+public class TitleBarPanel extends JPanel{
+    AppTitleLabel appTitle;
+    TitleBarButtonsPanel titleBarButtons;
 
     private Point initialClick;
-    public TitleBar() {
+    public TitleBarPanel() {
         setBackground(new Color(56, 57, 58));
         setLayout(new BorderLayout());
 
-        appTitle = new AppTitle("CellWeGo IPhone Inspector");
+        appTitle = new AppTitleLabel();
         appTitle.setVerticalAlignment(JLabel.CENTER);
 
-        titleBarButtons = new TitleBarButtons();
+        titleBarButtons = new TitleBarButtonsPanel();
 
         add(appTitle, BorderLayout.WEST);
         add(titleBarButtons, BorderLayout.EAST);
@@ -38,7 +38,7 @@ public class TitleBar extends JPanel{
 
         addMouseMotionListener(new MouseAdapter() {
             public void mouseDragged(MouseEvent e) {
-                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(TitleBar.this);
+                JFrame frame = (JFrame) SwingUtilities.getWindowAncestor(TitleBarPanel.this);
                 if (frame != null) {
                     int thisX = frame.getLocation().x;
                     int thisY = frame.getLocation().y;
