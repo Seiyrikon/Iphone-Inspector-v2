@@ -2,6 +2,7 @@ package components.panels;
 
 import java.awt.BasicStroke;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -11,6 +12,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import components.labels.ScanButtonIconLabel;
@@ -24,7 +26,11 @@ public class ScanButtonPanel extends JPanel {
     private Color normalColor = new Color(56, 57, 58);
     private Color hoverColor = new Color(240, 240, 240);
 
-    public ScanButtonPanel() {
+    private InformationContainerPanel infoContainer;
+
+    public ScanButtonPanel(InformationContainerPanel infoContainer) {
+        this.infoContainer = infoContainer;
+
         setOpaque(false);
         setBackground(normalColor);
         setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
@@ -57,7 +63,9 @@ public class ScanButtonPanel extends JPanel {
 
             @Override
             public void mouseClicked(MouseEvent e) {
+                pressed = false;
                 System.out.println("Scan Button clicked!");
+                generateInfo();
             }
 
             @Override
@@ -73,6 +81,21 @@ public class ScanButtonPanel extends JPanel {
             }
         });
 
+    }
+
+    private void generateInfo() {
+        infoContainer.removeAll();
+        infoContainer.setLayout(new BoxLayout(infoContainer, BoxLayout.Y_AXIS));
+
+        for (int i = 1; i <= 5; i++) {
+            JLabel label = new JLabel("Generated Info " + i);
+            label.setForeground(Color.BLACK);
+            label.setAlignmentX(Component.LEFT_ALIGNMENT);
+            infoContainer.add(label);
+        }
+
+        infoContainer.revalidate();
+        infoContainer.repaint();
     }
 
     @Override

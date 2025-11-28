@@ -7,6 +7,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JFrame;
 
 import components.panels.BodyContainerPanel;
+import components.panels.InformationContainerPanel;
 import components.panels.MainPanel;
 import components.panels.SideBarPanel;
 import components.panels.TitleBarPanel;
@@ -30,8 +31,11 @@ public class MainFrame extends JFrame {
         mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
 
         titleBar = new TitleBarPanel();
-        sideBar = new SideBarPanel();
         bodyContainer = new BodyContainerPanel();
+
+        InformationContainerPanel infoContainer = bodyContainer.getInfoContainer();
+
+        sideBar = new SideBarPanel(infoContainer);
 
         setContentPane(mainPanel);
 
