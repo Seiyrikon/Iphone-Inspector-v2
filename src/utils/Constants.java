@@ -14,7 +14,12 @@ public enum Constants {
     GENERATE_ICON("/resources/icons/generate-icon.png"),
 
     PRINT("Print"),
-    PRINT_ICON("/resources/icons/print-icon.png");
+    PRINT_ICON("/resources/icons/print-icon.png"),
+
+    IDEVICE_ID("idevice_id.exe"),
+    DEVICE_LIST("-l"),
+
+    IDEVICE_INFO("ideviceinfo.exe");
 
     private final String value;
 
