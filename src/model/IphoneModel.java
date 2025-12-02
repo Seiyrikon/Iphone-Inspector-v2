@@ -10,11 +10,13 @@ public class IphoneModel {
     private String imei;
     private String imei2;
     private String eid;
+    private String serialNo;
     private String storageType;
     private String version;
     private String icc;
     private String fcc;
-    private String modelRegion;
+    private String model;
+    private String region;
     private String productName;
     private String productType;
     private String productColor;

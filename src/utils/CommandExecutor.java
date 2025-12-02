@@ -25,11 +25,11 @@ public class CommandExecutor {
             String line;
 
             while ((line = stdOut.readLine()) != null) {
-                output.append(line).append("\n");
+                output.append(line).append(",");
             }
 
             while ((line = stdErr.readLine()) != null) {
-                output.append(line).append("\n");
+                output.append(line).append(",");
             }
 
             result.exitCode = process.waitFor();
