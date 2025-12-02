@@ -17,6 +17,9 @@ import javax.swing.JPanel;
 
 import components.labels.ScanButtonIconLabel;
 import components.labels.ScanButtonTextLabel;
+import services.device.DeviceService;
+import utils.CommandExecutor;
+import utils.CommandResult;
 
 public class ScanButtonPanel extends JPanel {
     ScanButtonIconLabel iconLabel;
@@ -27,9 +30,11 @@ public class ScanButtonPanel extends JPanel {
     private Color hoverColor = new Color(240, 240, 240);
 
     private InformationContainerPanel infoContainer;
+    private DeviceService deviceService;
 
-    public ScanButtonPanel(InformationContainerPanel infoContainer) {
+    public ScanButtonPanel(InformationContainerPanel infoContainer, DeviceService deviceService) {
         this.infoContainer = infoContainer;
+        this.deviceService = deviceService;
 
         setOpaque(false);
         setBackground(normalColor);
@@ -87,11 +92,20 @@ public class ScanButtonPanel extends JPanel {
         infoContainer.removeAll();
         infoContainer.setLayout(new BoxLayout(infoContainer, BoxLayout.Y_AXIS));
 
-        for (int i = 1; i <= 5; i++) {
-            JLabel label = new JLabel("Generated Info " + i);
-            label.setForeground(Color.BLACK);
-            label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        CommandResult result = deviceService.detect();
+        result.output = "Hello";
+
+        if(result.output == null) {
+            JLabel label = new JLabel("No Device Detected");
             infoContainer.add(label);
+        } else {
+
+            for (int i = 1; i <= 5; i++) {
+                JLabel label = new JLabel("Generated Info " + i);
+                label.setForeground(Color.BLACK);
+                label.setAlignmentX(Component.LEFT_ALIGNMENT);
+                infoContainer.add(label);
+            }
         }
 
         infoContainer.revalidate();

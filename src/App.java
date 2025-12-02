@@ -14,7 +14,7 @@ import components.frame.MainFrame;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // new MainFrame();
+        new MainFrame();
         
         //Barcode Generator
         // String data = "1234567890";
@@ -32,26 +32,26 @@ public class App {
         // }
 
         //QR Code Generator
-        String text = "Hello Bossing!";
-        String filePath = "qrcode.png";
+        // String text = "Hello Bossing!";
+        // String filePath = "qrcode.png";
 
-        int width = 300;
-        int height = 300;
+        // int width = 300;
+        // int height = 300;
 
-        QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        // QRCodeWriter qrCodeWriter = new QRCodeWriter();
 
-        Map<EncodeHintType, Object> hints = new HashMap<>();
-        hints.put(EncodeHintType.MARGIN, 1);
+        // Map<EncodeHintType, Object> hints = new HashMap<>();
+        // hints.put(EncodeHintType.MARGIN, 1);
 
-        try {
-            BitMatrix matrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height, hints);
+        // try {
+        //     BitMatrix matrix = qrCodeWriter.encode(text, BarcodeFormat.QR_CODE, width, height, hints);
 
-            Path path = FileSystems.getDefault().getPath(filePath);
-            MatrixToImageWriter.writeToPath(matrix, "PNG", path);
+        //     Path path = FileSystems.getDefault().getPath(filePath);
+        //     MatrixToImageWriter.writeToPath(matrix, "PNG", path);
 
-            System.out.println("QR Code Generated: " + filePath);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //     System.out.println("QR Code Generated: " + filePath);
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
     }
 }

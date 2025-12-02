@@ -11,6 +11,7 @@ import components.panels.InformationContainerPanel;
 import components.panels.MainPanel;
 import components.panels.SideBarPanel;
 import components.panels.TitleBarPanel;
+import services.device.DeviceService;
 
 public class MainFrame extends JFrame {
     TitleBarPanel titleBar;
@@ -19,6 +20,7 @@ public class MainFrame extends JFrame {
     MainPanel mainPanel;
 
     public MainFrame() {
+        DeviceService deviceService = new DeviceService(null);
         setUndecorated(true);
         setSize(800, 500);
         setLocationRelativeTo(null);
@@ -35,7 +37,7 @@ public class MainFrame extends JFrame {
 
         InformationContainerPanel infoContainer = bodyContainer.getInfoContainer();
 
-        sideBar = new SideBarPanel(infoContainer);
+        sideBar = new SideBarPanel(infoContainer, deviceService);
 
         setContentPane(mainPanel);
 
