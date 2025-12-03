@@ -31,59 +31,51 @@ public class DeviceService {
         for(String part : parts) {
             if(part.contains("InternationalMobileEquipmentIdentity:")) {
                 String[] labels = part.split(" ");
-                // mappedInformations.add("IMEI/MEID: " + parts[1]);
-                iphone.setImei("IMEI/MEID: " + labels[1]);
+                iphone.setImei(labels[1]);
                 continue;
             }
             
             if(part.contains("InternationalMobileEquipmentIdentity2:")) {
                 String[] labels = part.split(" ");
-                // mappedInformations.add("IMEI2: " + labels[1]);
-                iphone.setImei2("IMEI2: " + labels[1]);
+                iphone.setImei2(labels[1]);
                 continue;
             }
             
             if(part.contains("SerialNumber:")) {
                 String[] labels = part.split(" ");
-                // mappedInformations.add("(S) Serial No: " + labels[1]);
 
                 if(labels[0].matches("(?i)^SerialNumber:$"))
-                iphone.setSerialNo("(S) Serial No: " + labels[1]);
+                iphone.setSerialNo(labels[1]);
                 continue;
             }
             
             if(part.contains("ModelNumber:")) {
                 String[] labels = part.split(" ");
-                // modelNumberRegion += labels[1];
                 iphone.setModel(labels[1]);
                 continue;
             }
 
             if(part.contains("RegionInfo:")) {
                 String[] labels = part.split(" ");
-                // modelNumberRegion += labels[1];
                 iphone.setRegion(labels[1]);
                 continue;
             }
             
             if(part.contains("ProductName:")) {
                 String[] labels = part.split(" ");
-                // mappedInformations.add("Product Name: " + labels[1]);
-                iphone.setProductName("Product Name: " + labels[1]);
+                iphone.setProductName(labels[1]);
                 continue;
             }
             
             if(part.contains("ProductType:")) {
                 String[] labels = part.split(" ");
-                // mappedInformations.add("Product Type: " + labels[1]);
-                iphone.setProductType("Product Type: " + labels[1]);
+                iphone.setProductType(labels[1]);
                 continue;
             }
             
             if(part.contains("ProductVersion:")) {
                 String[] labels = part.split(" ");
-                // mappedInformations.add("Product Version: " + labels[1]);
-                iphone.setProductVersion("Product Version: " + labels[1]);
+                iphone.setProductVersion(labels[1]);
                 continue;
             }
         }

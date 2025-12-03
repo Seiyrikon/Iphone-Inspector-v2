@@ -19,7 +19,15 @@ public enum Constants {
     IDEVICE_ID("idevice_id.exe"),
     DEVICE_LIST("-l"),
 
-    IDEVICE_INFO("ideviceinfo.exe");
+    IDEVICE_INFO("ideviceinfo.exe"),
+
+    IMEI("IMEI/MEID: "),
+    IMEI2("IMEI2: "),
+    SERIAL_NUMBER("(S) Serial No: "),
+    MODEL_NUMBER("Model Number: "),
+    PRODUCT_NAME("Product Name: "),
+    PRODUCT_TYPE("Product Type: "),
+    PRODUCT_VERSION("Product Version: ");
 
     private final String value;
 

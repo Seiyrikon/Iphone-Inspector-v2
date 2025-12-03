@@ -15,12 +15,14 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import components.labels.IphoneInfoLabel;
 import components.labels.ScanButtonIconLabel;
 import components.labels.ScanButtonTextLabel;
 import model.IphoneModel;
 import services.device.DeviceService;
 import utils.CommandExecutor;
 import utils.CommandResult;
+import utils.Constants;
 
 public class ScanButtonPanel extends JPanel {
     ScanButtonIconLabel iconLabel;
@@ -93,14 +95,15 @@ public class ScanButtonPanel extends JPanel {
         infoContainer.removeAll();
         infoContainer.setLayout(new BoxLayout(infoContainer, BoxLayout.Y_AXIS));
 
-        // CommandResult result = deviceService.detect();
+        CommandResult device = deviceService.detect();
+
+        if(device.output.isBlank() && device.error.isBlank()) {
+            System.out.println("No Device Detected!");
+            return;
+        }
+
         IphoneModel result = deviceService.extractInfo();
         // result.output = "Hello";
-
-        if (result == null) {
-            JLabel label = new JLabel("No device connected");
-            infoContainer.add(label);
-        }
 
         // if (result.output != null) {
         //     JLabel label = new JLabel(result.output);
@@ -115,39 +118,25 @@ public class ScanButtonPanel extends JPanel {
         //     }
 
         // }
-        JLabel imeiLabel = new JLabel(result.getImei());
-        imeiLabel.setForeground(Color.BLACK);
-        imeiLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        IphoneInfoLabel imeiLabel = new IphoneInfoLabel(Constants.IMEI.get().toString() + result.getImei());
         infoContainer.add(imeiLabel);
 
-        JLabel imei2Label = new JLabel(result.getImei2());
-        imei2Label.setForeground(Color.BLACK);
-        imei2Label.setAlignmentX(Component.LEFT_ALIGNMENT);
+        IphoneInfoLabel imei2Label = new IphoneInfoLabel(Constants.IMEI2.get().toString() + result.getImei2());
         infoContainer.add(imei2Label);
 
-        JLabel serialNoLabel = new JLabel(result.getSerialNo());
-        serialNoLabel.setForeground(Color.BLACK);
-        serialNoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        IphoneInfoLabel serialNoLabel = new IphoneInfoLabel(Constants.SERIAL_NUMBER.get().toString() + result.getSerialNo());
         infoContainer.add(serialNoLabel);
 
-        JLabel modelNoLabel = new JLabel("Model Number: " + result.getModel() + result.getRegion());
-        modelNoLabel.setForeground(Color.BLACK);
-        modelNoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        IphoneInfoLabel modelNoLabel = new IphoneInfoLabel(Constants.MODEL_NUMBER.get().toString() + result.getModel() + result.getRegion());
         infoContainer.add(modelNoLabel);
 
-        JLabel productNameLabel = new JLabel(result.getProductName());
-        productNameLabel.setForeground(Color.BLACK);
-        productNameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        IphoneInfoLabel productNameLabel = new IphoneInfoLabel(Constants.PRODUCT_NAME.get().toString() + result.getProductName());
         infoContainer.add(productNameLabel);
 
-        JLabel productTypeLabel = new JLabel(result.getProductType());
-        productTypeLabel.setForeground(Color.BLACK);
-        productTypeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        IphoneInfoLabel productTypeLabel = new IphoneInfoLabel(Constants.PRODUCT_TYPE.get().toString() + result.getProductType());
         infoContainer.add(productTypeLabel);
 
-        JLabel productVersionLabel = new JLabel(result.getProductVersion());
-        productVersionLabel.setForeground(Color.BLACK);
-        productVersionLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        IphoneInfoLabel productVersionLabel = new IphoneInfoLabel(Constants.PRODUCT_VERSION.get().toString() + result.getProductVersion());
         infoContainer.add(productVersionLabel);
 
         infoContainer.revalidate();

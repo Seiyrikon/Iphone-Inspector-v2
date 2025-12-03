@@ -22,7 +22,7 @@ import components.frame.MainFrame;
 
 public class App {
     public static void main(String[] args) throws Exception {
-        // new MainFrame();
+        new MainFrame();
         
         //Barcode Generator
         // String data = "1234567890";
@@ -63,60 +63,60 @@ public class App {
         // }
 
         // UPC Barcode generator
-        try {
-            String upc = "036000291452";
+        // try {
+        //     String upc = "036000291452";
 
-            int width = 400;
-            int height = 220;
-            int barcodeHeight = 160;
+        //     int width = 400;
+        //     int height = 220;
+        //     int barcodeHeight = 160;
 
-            MultiFormatWriter writer = new MultiFormatWriter();
-            BitMatrix matrix = writer.encode(upc, BarcodeFormat.UPC_A, width, barcodeHeight);
+        //     MultiFormatWriter writer = new MultiFormatWriter();
+        //     BitMatrix matrix = writer.encode(upc, BarcodeFormat.UPC_A, width, barcodeHeight);
 
-            BufferedImage barcode = MatrixToImageWriter.toBufferedImage(matrix);
+        //     BufferedImage barcode = MatrixToImageWriter.toBufferedImage(matrix);
 
-            BufferedImage finalImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-            Graphics2D g = finalImage.createGraphics();
+        //     BufferedImage finalImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        //     Graphics2D g = finalImage.createGraphics();
 
-            g.setColor(Color.WHITE);
-            g.fillRect(0, 0, width, height);
+        //     g.setColor(Color.WHITE);
+        //     g.fillRect(0, 0, width, height);
 
-            g.drawImage(barcode, 0, 0, null);
+        //     g.drawImage(barcode, 0, 0, null);
 
-            g.setColor(Color.BLACK);
-            g.setFont(new Font("Monospaced", Font.BOLD, 20));
-            FontMetrics fm = g.getFontMetrics();
+        //     g.setColor(Color.BLACK);
+        //     g.setFont(new Font("Monospaced", Font.BOLD, 20));
+        //     FontMetrics fm = g.getFontMetrics();
 
-            // UPC Splitting
-            String leftGuardDigit = upc.substring(0, 1);      // 1 digit
-            String leftGroup = upc.substring(1, 6);            // 5 digits
-            String rightGroup = upc.substring(6, 11);          // 5 digits
-            String checkDigit = upc.substring(11);             // last digit
+        //     // UPC Splitting
+        //     String leftGuardDigit = upc.substring(0, 1);      // 1 digit
+        //     String leftGroup = upc.substring(1, 6);            // 5 digits
+        //     String rightGroup = upc.substring(6, 11);          // 5 digits
+        //     String checkDigit = upc.substring(11);             // last digit
 
-            int y = barcodeHeight + 20;
+        //     int y = barcodeHeight + 20;
 
-            // Bar width per module
-            int module = width / 95; // UPC-A = 95 modules total
+        //     // Bar width per module
+        //     int module = width / 95; // UPC-A = 95 modules total
 
-            // Digit positions based on UPC spec
-            int xLeftGuardDigit = 0;
-            int xLeftGroup = module * 3;
-            int xRightGroup = module * 49;
-            int xCheckDigit = module * 92;
+        //     // Digit positions based on UPC spec
+        //     int xLeftGuardDigit = 0;
+        //     int xLeftGroup = module * 3;
+        //     int xRightGroup = module * 49;
+        //     int xCheckDigit = module * 92;
 
-            // Draw each aligned number
-            g.drawString(leftGuardDigit, xLeftGuardDigit, y);
-            g.drawString(leftGroup, xLeftGroup, y);
-            g.drawString(rightGroup, xRightGroup, y);
-            g.drawString(checkDigit, xCheckDigit, y);
+        //     // Draw each aligned number
+        //     g.drawString(leftGuardDigit, xLeftGuardDigit, y);
+        //     g.drawString(leftGroup, xLeftGroup, y);
+        //     g.drawString(rightGroup, xRightGroup, y);
+        //     g.drawString(checkDigit, xCheckDigit, y);
 
-            g.dispose();
-            ImageIO.write(finalImage, "png", new File("upc_aligned.png"));
+        //     g.dispose();
+        //     ImageIO.write(finalImage, "png", new File("upc_aligned.png"));
 
-            System.out.println("Accurate UPC barcode generated: upc_aligned.png");
+        //     System.out.println("Accurate UPC barcode generated: upc_aligned.png");
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        // } catch (Exception e) {
+        //     e.printStackTrace();
+        // }
     }
 }
