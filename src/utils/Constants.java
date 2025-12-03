@@ -23,7 +23,10 @@ public enum Constants {
 
     IMEI("IMEI/MEID: "),
     IMEI2("IMEI2: "),
+    EID("EID: "),
     SERIAL_NUMBER("(S) Serial No: "),
+    STORAGE_TYPE("Storage: "),
+    COLOR_TYPE("Color: "),
     MODEL_NUMBER("Model Number: "),
     PRODUCT_NAME("Product Name: "),
     PRODUCT_TYPE("Product Type: "),

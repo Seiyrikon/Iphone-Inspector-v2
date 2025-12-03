@@ -15,7 +15,6 @@ public class SideBarPanel extends JPanel{
     public SideBarPanel(InformationContainerPanel infoContainer, DeviceService deviceService) {
         setPreferredSize(new Dimension(200, 600));
         setLayout(null);
-        // setBackground(Color.RED);
         setBackground(new Color(20, 21, 22));
 
         scanButton = new ScanButtonPanel(infoContainer, deviceService);

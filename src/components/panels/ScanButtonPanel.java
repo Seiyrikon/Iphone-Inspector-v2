@@ -12,8 +12,10 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import components.labels.IphoneInfoLabel;
 import components.labels.ScanButtonIconLabel;
@@ -97,46 +99,89 @@ public class ScanButtonPanel extends JPanel {
 
         CommandResult device = deviceService.detect();
 
-        if(device.output.isBlank() && device.error.isBlank()) {
-            System.out.println("No Device Detected!");
-            return;
-        }
+        // if (device.output.isBlank() && device.error.isBlank()) {
+        //     System.out.println("No Device Detected!");
+        //     return;
+        // }
 
         IphoneModel result = deviceService.extractInfo();
-        // result.output = "Hello";
 
-        // if (result.output != null) {
-        //     JLabel label = new JLabel(result.output);
-        //     infoContainer.add(label);
-        // } else {
+        // Helper method for spacing
+        final int SPACING = 10;
 
-        //     for (int i = 1; i <= 5; i++) {
-        //         JLabel label = new JLabel("Generated Info " + i);
-        //         label.setForeground(Color.BLACK);
-        //         label.setAlignmentX(Component.LEFT_ALIGNMENT);
-        //         infoContainer.add(label);
-        //     }
+        // --- EID ---
+        IphoneInfoLabel eidLabel = new IphoneInfoLabel(Constants.EID.get().toString());
+        eidLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        infoContainer.add(eidLabel);
 
-        // }
+        JTextField eidTextField = new JTextField(20);
+        eidTextField.setAlignmentX(Component.LEFT_ALIGNMENT);
+        infoContainer.add(eidTextField);
+
+        infoContainer.add(Box.createVerticalStrut(SPACING));
+
+        // --- COLOR ---
+        IphoneInfoLabel colorLabel = new IphoneInfoLabel(Constants.COLOR_TYPE.get().toString());
+        colorLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        infoContainer.add(colorLabel);
+
+        JComboBox<String> colorDropdown = new JComboBox<>(new String[] { "Red", "Black", "Blue" });
+        colorDropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
+        infoContainer.add(colorDropdown);
+
+        infoContainer.add(Box.createVerticalStrut(SPACING));
+
+        // --- STORAGE ---
+        IphoneInfoLabel storageLabel = new IphoneInfoLabel(Constants.STORAGE_TYPE.get().toString());
+        storageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
+        infoContainer.add(storageLabel);
+
+        JComboBox<String> storageDropdown = new JComboBox<>(new String[] {
+                "64 GB", "128 GB", "256 GB", "512 GB", "1 TB"
+        });
+        storageDropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
+        infoContainer.add(storageDropdown);
+
+        infoContainer.add(Box.createVerticalStrut(SPACING));
+
+        // --- IMEI ---
         IphoneInfoLabel imeiLabel = new IphoneInfoLabel(Constants.IMEI.get().toString() + result.getImei());
+        imeiLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(imeiLabel);
 
+        // --- IMEI2 ---
         IphoneInfoLabel imei2Label = new IphoneInfoLabel(Constants.IMEI2.get().toString() + result.getImei2());
+        imei2Label.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(imei2Label);
 
-        IphoneInfoLabel serialNoLabel = new IphoneInfoLabel(Constants.SERIAL_NUMBER.get().toString() + result.getSerialNo());
+        // --- SERIAL NO ---
+        IphoneInfoLabel serialNoLabel = new IphoneInfoLabel(
+                Constants.SERIAL_NUMBER.get().toString() + result.getSerialNo());
+        serialNoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(serialNoLabel);
 
-        IphoneInfoLabel modelNoLabel = new IphoneInfoLabel(Constants.MODEL_NUMBER.get().toString() + result.getModel() + result.getRegion());
+        // --- MODEL NO ---
+        IphoneInfoLabel modelNoLabel = new IphoneInfoLabel(
+                Constants.MODEL_NUMBER.get().toString() + result.getModel() + result.getRegion());
+        modelNoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(modelNoLabel);
 
-        IphoneInfoLabel productNameLabel = new IphoneInfoLabel(Constants.PRODUCT_NAME.get().toString() + result.getProductName());
+        // --- PRODUCT NAME ---
+        IphoneInfoLabel productNameLabel = new IphoneInfoLabel(
+                Constants.PRODUCT_NAME.get().toString() + result.getProductName());
+        productNameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(productNameLabel);
 
-        IphoneInfoLabel productTypeLabel = new IphoneInfoLabel(Constants.PRODUCT_TYPE.get().toString() + result.getProductType());
+        // --- PRODUCT TYPE ---
+        IphoneInfoLabel productTypeLabel = new IphoneInfoLabel(
+                Constants.PRODUCT_TYPE.get().toString() + result.getProductType());
+        productTypeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(productTypeLabel);
 
-        IphoneInfoLabel productVersionLabel = new IphoneInfoLabel(Constants.PRODUCT_VERSION.get().toString() + result.getProductVersion());
+        // --- PRODUCT VERSION ---
+        IphoneInfoLabel productVersionLabel = new IphoneInfoLabel(
+                Constants.PRODUCT_VERSION.get().toString() + result.getProductVersion());
+        productVersionLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(productVersionLabel);
 
         infoContainer.revalidate();
