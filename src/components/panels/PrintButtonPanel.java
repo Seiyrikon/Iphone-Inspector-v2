@@ -13,6 +13,12 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
+import com.zebra.sdk.comm.Connection;
+import com.zebra.sdk.printer.PrinterLanguage;
+import com.zebra.sdk.printer.ZebraPrinterFactory;
+import com.zebra.sdk.printer.discovery.DiscoveredUsbPrinter;
+import com.zebra.sdk.printer.discovery.UsbDiscoverer;
+
 import components.labels.PrintButtonIconLabel;
 import components.labels.PrintButtonTextLabel;
 
@@ -58,6 +64,14 @@ public class PrintButtonPanel extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Print Button clicked!");
+
+                try {
+                    printTestLabel();
+                    System.out.println("Print sent!");
+                } catch (Exception err) {
+                    err.printStackTrace();
+                    System.out.println("Print failed!");
+                }
             }
 
             @Override
@@ -72,6 +86,75 @@ public class PrintButtonPanel extends JPanel {
                 repaint();
             }
         });
+    }
+
+    private boolean isZplMode(Connection conn) {
+        try {
+            // ask printer to describe itself
+            conn.write("~HI".getBytes());
+
+            // wait a little for response
+            Thread.sleep(300);
+
+            // read identification string
+            byte[] response = conn.read();
+            if (response == null)
+                return false;
+
+            String info = new String(response);
+
+            // ZPL printers always include "ZPL" in the ~HI response
+            return info.contains("ZPL");
+
+        } catch (Exception e) {
+            return false; // no response → not ZPL
+        }
+    }
+
+    public void printTestLabel() throws Exception {
+
+        // ----------- 1. FIND USB PRINTER -------------
+        DiscoveredUsbPrinter usbPrinter = null;
+        for (DiscoveredUsbPrinter p : UsbDiscoverer.getZebraUsbPrinters()) {
+            usbPrinter = p;
+            break;
+        }
+
+        if (usbPrinter == null) {
+            throw new Exception("No Zebra USB printer detected.");
+        }
+
+        // ----------- 2. CONNECT TO PRINTER ------------
+        Connection conn = usbPrinter.getConnection();
+        conn.open();
+
+        // ----------- 3. CHECK IF PRINTER IS IN ZPL MODE ------------
+        // if (!isZplMode(conn)) {
+        //     conn.close();
+        //     throw new Exception("Printer is NOT in ZPL mode. Switch printer language to ZPL.");
+        // }
+
+        // // ----------- 4. SEND ZPL IF OK ----------------
+        // String zpl = "^XA^FO50,50^ADN,36,20^FDHELLO ZEBRA^FS^XZ";
+        PrinterLanguage printerLanguage = ZebraPrinterFactory.getInstance(conn).getPrinterControlLanguage();
+        conn.write(getConfigLabel(printerLanguage));
+
+
+
+        // conn.close();
+    }
+
+    private byte[] getConfigLabel(PrinterLanguage printerLanguage) {
+
+        byte[] configLabel = null;
+        if (printerLanguage == PrinterLanguage.ZPL) {
+            configLabel = "^XA^FO17,16^GB379,371,8^FS^FT65,255^A0N,135,134^FDTEST^FS^XZ".getBytes();
+        } else if ((printerLanguage == PrinterLanguage.CPCL) || (printerLanguage == PrinterLanguage.LINE_PRINT)) {
+            String cpclConfigLabel = "! 0 200 200 406 1\r\n" + "ON-FEED IGNORE\r\n" + "BOX 20 20 380 380 8\r\n"
+                    + "T 0 6 137 177 TEST\r\n" + "PRINT\r\n";
+            configLabel = cpclConfigLabel.getBytes();
+        }
+        return configLabel;
     }
 
     @Override
