@@ -24,7 +24,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         new MainFrame();
         
-        //Barcode Generator
+        // Barcode Generator
         // String data = "1234567890";
         // String filePath = "barcode.png";
 

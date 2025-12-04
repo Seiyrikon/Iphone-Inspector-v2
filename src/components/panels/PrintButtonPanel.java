@@ -146,9 +146,26 @@ public class PrintButtonPanel extends JPanel {
 
     private byte[] getConfigLabel(PrinterLanguage printerLanguage) {
 
+    /*
+     * Returns the command for a test label depending on the printer control language
+     * The test label is a box with the word "TEST" inside of it
+     * 
+     * _________________________
+     * |                       |
+     * |                       |
+     * |        TEST           |
+     * |                       |
+     * |                       |
+     * |_______________________|
+     * 
+     * 
+     */
+
+
         byte[] configLabel = null;
         if (printerLanguage == PrinterLanguage.ZPL) {
-            configLabel = "^XA^FO17,16^GB379,371,8^FS^FT65,255^A0N,135,134^FDTEST^FS^XZ".getBytes();
+            configLabel = "^XA^FT65,255^A0N,20,40^^BY3^BCN,80,Y,N,N^FDFFXDD20N0F0X^FS^XZ".getBytes();
+            // configLabel = "^XA^CF0,30^FO50,30^FD123456789012^FS^FO50,60^BCN,100,Y,N,N^FD123456789012^FS".getBytes();
         } else if ((printerLanguage == PrinterLanguage.CPCL) || (printerLanguage == PrinterLanguage.LINE_PRINT)) {
             String cpclConfigLabel = "! 0 200 200 406 1\r\n" + "ON-FEED IGNORE\r\n" + "BOX 20 20 380 380 8\r\n"
                     + "T 0 6 137 177 TEST\r\n" + "PRINT\r\n";
