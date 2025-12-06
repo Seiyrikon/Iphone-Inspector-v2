@@ -37,9 +37,12 @@ public class ScanButtonPanel extends JPanel {
     private InformationContainerPanel infoContainer;
     private DeviceService deviceService;
 
-    public ScanButtonPanel(InformationContainerPanel infoContainer, DeviceService deviceService) {
+    IphoneModel iphone;
+
+    public ScanButtonPanel(InformationContainerPanel infoContainer, DeviceService deviceService, IphoneModel iphone) {
         this.infoContainer = infoContainer;
         this.deviceService = deviceService;
+        this.iphone = iphone;
 
         setOpaque(false);
         setBackground(normalColor);

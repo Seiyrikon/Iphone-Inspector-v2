@@ -26,7 +26,7 @@ public class DeviceService {
         IphoneModel iphone = new IphoneModel();
         CommandResult result = CommandExecutor.runTool(Constants.IDEVICE_INFO.get().toString());
 
-        String[] parts = result.output.split(",");
+        String[] parts = result.output.split(Constants.INFO_SEPARATOR.get().toString());
 
         for(String part : parts) {
             if(part.contains("InternationalMobileEquipmentIdentity:")) {

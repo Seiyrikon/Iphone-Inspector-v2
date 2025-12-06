@@ -11,6 +11,7 @@ import components.panels.InformationContainerPanel;
 import components.panels.MainPanel;
 import components.panels.SideBarPanel;
 import components.panels.TitleBarPanel;
+import model.IphoneModel;
 import services.device.DeviceService;
 
 public class MainFrame extends JFrame {
@@ -18,6 +19,8 @@ public class MainFrame extends JFrame {
     SideBarPanel sideBar;
     BodyContainerPanel bodyContainer;
     MainPanel mainPanel;
+    InformationContainerPanel infoContainer;
+    IphoneModel iphone;
 
     public MainFrame() {
         DeviceService deviceService = new DeviceService(null);
@@ -35,9 +38,10 @@ public class MainFrame extends JFrame {
         titleBar = new TitleBarPanel();
         bodyContainer = new BodyContainerPanel();
 
-        InformationContainerPanel infoContainer = bodyContainer.getInfoContainer();
+        infoContainer = bodyContainer.getInfoContainer();
+        iphone = new IphoneModel();
 
-        sideBar = new SideBarPanel(infoContainer, deviceService);
+        sideBar = new SideBarPanel(infoContainer, deviceService, iphone);
 
         setContentPane(mainPanel);
 

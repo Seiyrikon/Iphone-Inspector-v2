@@ -30,7 +30,9 @@ public enum Constants {
     MODEL_NUMBER("Model Number: "),
     PRODUCT_NAME("Product Name: "),
     PRODUCT_TYPE("Product Type: "),
-    PRODUCT_VERSION("Product Version: ");
+    PRODUCT_VERSION("Product Version: "),
+
+    INFO_SEPARATOR("'");
 
     private final String value;
 
