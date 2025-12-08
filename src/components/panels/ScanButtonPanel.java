@@ -38,6 +38,7 @@ public class ScanButtonPanel extends JPanel {
     private DeviceService deviceService;
 
     IphoneModel iphone;
+    JComboBox<String> colorDropdown = null;
 
     public ScanButtonPanel(InformationContainerPanel infoContainer, DeviceService deviceService, IphoneModel iphone) {
         this.infoContainer = infoContainer;
@@ -113,7 +114,7 @@ public class ScanButtonPanel extends JPanel {
         final int SPACING = 10;
 
         // --- EID ---
-        IphoneInfoLabel eidLabel = new IphoneInfoLabel(Constants.EID.get().toString());
+        IphoneInfoLabel eidLabel = new IphoneInfoLabel(Constants.EID.get());
         eidLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(eidLabel);
 
@@ -124,66 +125,104 @@ public class ScanButtonPanel extends JPanel {
         infoContainer.add(Box.createVerticalStrut(SPACING));
 
         // --- COLOR ---
-        IphoneInfoLabel colorLabel = new IphoneInfoLabel(Constants.COLOR_TYPE.get().toString());
+        IphoneInfoLabel colorLabel = new IphoneInfoLabel(Constants.COLOR_TYPE.get());
         colorLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(colorLabel);
 
-        JComboBox<String> colorDropdown = new JComboBox<>(new String[] { "Red", "Black", "Blue" });
+        if(Constants.IPHONE_8.get().equals(result.getProductType()) 
+            || Constants.IPHONE_8_PLUS.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone8And8PlusColors());
+        } else if(Constants.IPHONE_X.get().equals(result.getProductType()) 
+            || Constants.IPHONE_XS.get().equals(result.getProductType()) 
+            || Constants.IPHONE_XS_MAX.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphoneXAndXsAndXsMaxColors());
+        } else if(Constants.IPHONE_XR.get().equals(result.getProductType())) {
+            colorDropdown = new JComboBox<>(result.getIphoneXrColors());
+        } else if(Constants.IPHONE_11.get().equals(result.getProductType())) {
+            colorDropdown = new JComboBox<>(result.getIphone11Colors());
+        } else if(Constants.IPHONE_11_PRO.get().equals(result.getProductType()) 
+            || Constants.IPHONE_11_PRO_MAX.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone11ProAnd11ProMaxColors());
+        } else if(Constants.IPHONE_12.get().equals(result.getProductType()) 
+            || Constants.IPHONE_12_MINI.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone12And12MiniColors());
+        } else if(Constants.IPHONE_12_PRO.get().equals(result.getProductType()) 
+            || Constants.IPHONE_12_PRO_MAX.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone12ProAnd12ProMaxColors());
+        } else if(Constants.IPHONE_13.get().equals(result.getProductType()) 
+            || Constants.IPHONE_13_MINI.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone13Ad13MiniColors());
+        } else if(Constants.IPHONE_13_PRO.get().equals(result.getProductType()) 
+            || Constants.IPHONE_13_PRO_MAX.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone13ProAnd13ProMaxColors());
+        } else if(Constants.IPHONE_SE.get().equals(result.getProductType())) {
+            colorDropdown = new JComboBox<>(result.getIphoneSeColors());
+        } else if(Constants.IPHONE_14.get().equals(result.getProductType()) 
+            || Constants.IPHONE_14_PLUS.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone14And14PlusColors());
+        } else if(Constants.IPHONE_14_PRO.get().equals(result.getProductType()) 
+            || Constants.IPHONE_14_PRO_MAX.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone14ProAnd14ProMaxColors());
+        } else if(Constants.IPHONE_15.get().equals(result.getProductType()) 
+            || Constants.IPHONE_15_PLUS.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone15And15PlusColors());
+        } else if(Constants.IPHONE_15_PRO.get().equals(result.getProductType()) 
+            || Constants.IPHONE_15_PRO_MAX.get().equals(result.getProductType())) {
+                colorDropdown = new JComboBox<>(result.getIphone15ProAnd15ProMaxColors());
+        }
         colorDropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(colorDropdown);
 
         infoContainer.add(Box.createVerticalStrut(SPACING));
 
         // --- STORAGE ---
-        IphoneInfoLabel storageLabel = new IphoneInfoLabel(Constants.STORAGE_TYPE.get().toString());
+        IphoneInfoLabel storageLabel = new IphoneInfoLabel(Constants.STORAGE_TYPE.get());
         storageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(storageLabel);
 
-        JComboBox<String> storageDropdown = new JComboBox<>(new String[] {
-                "64 GB", "128 GB", "256 GB", "512 GB", "1 TB"
-        });
+        JComboBox<String> storageDropdown = new JComboBox<>(result.getStorageTypes());
         storageDropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(storageDropdown);
 
         infoContainer.add(Box.createVerticalStrut(SPACING));
 
         // --- IMEI ---
-        IphoneInfoLabel imeiLabel = new IphoneInfoLabel(Constants.IMEI.get().toString() + result.getImei());
+        IphoneInfoLabel imeiLabel = new IphoneInfoLabel(Constants.IMEI.get() + result.getImei());
         imeiLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(imeiLabel);
 
         // --- IMEI2 ---
-        IphoneInfoLabel imei2Label = new IphoneInfoLabel(Constants.IMEI2.get().toString() + result.getImei2());
+        IphoneInfoLabel imei2Label = new IphoneInfoLabel(Constants.IMEI2.get() + result.getImei2());
         imei2Label.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(imei2Label);
 
         // --- SERIAL NO ---
         IphoneInfoLabel serialNoLabel = new IphoneInfoLabel(
-                Constants.SERIAL_NUMBER.get().toString() + result.getSerialNo());
+                Constants.SERIAL_NUMBER.get() + result.getSerialNo());
         serialNoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(serialNoLabel);
 
         // --- MODEL NO ---
         IphoneInfoLabel modelNoLabel = new IphoneInfoLabel(
-                Constants.MODEL_NUMBER.get().toString() + result.getModel() + result.getRegion());
+                Constants.MODEL_NUMBER.get() + result.getModel() + result.getRegion());
         modelNoLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(modelNoLabel);
 
         // --- PRODUCT NAME ---
         IphoneInfoLabel productNameLabel = new IphoneInfoLabel(
-                Constants.PRODUCT_NAME.get().toString() + result.getProductName());
+                Constants.PRODUCT_NAME.get() + result.getProductName());
         productNameLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(productNameLabel);
 
         // --- PRODUCT TYPE ---
         IphoneInfoLabel productTypeLabel = new IphoneInfoLabel(
-                Constants.PRODUCT_TYPE.get().toString() + result.getProductType());
+                Constants.PRODUCT_TYPE.get() + result.getProductType());
         productTypeLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(productTypeLabel);
 
         // --- PRODUCT VERSION ---
         IphoneInfoLabel productVersionLabel = new IphoneInfoLabel(
-                Constants.PRODUCT_VERSION.get().toString() + result.getProductVersion());
+                Constants.PRODUCT_VERSION.get() + result.getProductVersion());
         productVersionLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
         infoContainer.add(productVersionLabel);
 

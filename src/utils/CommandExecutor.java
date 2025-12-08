@@ -25,11 +25,11 @@ public class CommandExecutor {
             String line;
 
             while ((line = stdOut.readLine()) != null) {
-                output.append(line).append(Constants.INFO_SEPARATOR.get().toString());
+                output.append(line).append(Constants.SINGLE_QUOTE_INFO_SEPARATOR.get());
             }
 
             while ((line = stdErr.readLine()) != null) {
-                output.append(line).append(Constants.INFO_SEPARATOR.get().toString());
+                output.append(line).append(Constants.SINGLE_QUOTE_INFO_SEPARATOR.get());
             }
 
             result.exitCode = process.waitFor();
@@ -47,7 +47,7 @@ public class CommandExecutor {
     public static CommandResult runTool(String toolName, String... args) {
         List<String> command = new ArrayList<>();
 
-        command.add("tools/" + toolName);
+        command.add(Constants.TOOLS_FOLDER.get() + toolName);
 
         if (args != null) {
             for (String arg : args) {
