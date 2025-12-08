@@ -125,9 +125,14 @@ public class ScanButtonPanel extends JPanel {
         infoContainer.add(Box.createVerticalStrut(SPACING));
 
         // --- COLOR ---
+        JPanel colorPanel = new JPanel();
+        colorPanel.setLayout(new BoxLayout(colorPanel, BoxLayout.X_AXIS));
+        colorPanel.setBackground(new Color(210, 210, 210));
+
         IphoneInfoLabel colorLabel = new IphoneInfoLabel(Constants.COLOR_TYPE.get());
-        colorLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        infoContainer.add(colorLabel);
+        colorPanel.add(colorLabel);
+
+        colorPanel.add(Box.createHorizontalStrut(19));
 
         if(Constants.IPHONE_8.get().equals(result.getProductType()) 
             || Constants.IPHONE_8_PLUS.get().equals(result.getProductType())) {
@@ -171,20 +176,34 @@ public class ScanButtonPanel extends JPanel {
                 colorDropdown = new JComboBox<>(result.getIphone15ProAnd15ProMaxColors());
         }
         colorDropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
-        infoContainer.add(colorDropdown);
+        colorPanel.add(colorDropdown);
 
-        infoContainer.add(Box.createVerticalStrut(SPACING));
+        colorPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        infoContainer.add(colorPanel);
+
+        // infoContainer.add(Box.createVerticalStrut(SPACING));
 
         // --- STORAGE ---
+        JPanel storageTypePanel = new JPanel();
+        storageTypePanel.setLayout(new BoxLayout(storageTypePanel, BoxLayout.X_AXIS));
+        storageTypePanel.setBackground(new Color(210, 210, 210));
+
         IphoneInfoLabel storageLabel = new IphoneInfoLabel(Constants.STORAGE_TYPE.get());
-        storageLabel.setAlignmentX(Component.LEFT_ALIGNMENT);
-        infoContainer.add(storageLabel);
+        storageTypePanel.add(storageLabel);
+
+        storageTypePanel.add(Box.createHorizontalStrut(5));
 
         JComboBox<String> storageDropdown = new JComboBox<>(result.getStorageTypes());
         storageDropdown.setAlignmentX(Component.LEFT_ALIGNMENT);
-        infoContainer.add(storageDropdown);
 
-        infoContainer.add(Box.createVerticalStrut(SPACING));
+        storageTypePanel.add(storageDropdown);
+
+        storageTypePanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        infoContainer.add(storageTypePanel);
+
+        // infoContainer.add(Box.createVerticalStrut(SPACING));
 
         // --- IMEI ---
         IphoneInfoLabel imeiLabel = new IphoneInfoLabel(Constants.IMEI.get() + result.getImei());
