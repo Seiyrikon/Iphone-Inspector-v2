@@ -6,6 +6,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
 
 import components.combobox.ColorTypeComboBox;
 import components.combobox.StorageTypeComboBox;
@@ -29,9 +30,11 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(JLabel label, EidTextField component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
+        setBorder(new EmptyBorder(0, 0, 0, 10));
 
         add(label);
-        add(Box.createHorizontalStrut(73));
+        add(Box.createHorizontalStrut(116));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -40,9 +43,11 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(JLabel label, ColorTypeComboBox component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
+        setBorder(new EmptyBorder(0, 0, 0, 10));
 
         add(label);
-        add(Box.createHorizontalStrut(62));
+        add(Box.createHorizontalStrut(101));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -51,9 +56,11 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(JLabel label, StorageTypeComboBox component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
+        setBorder(new EmptyBorder(0, 0, 0, 10));
 
         add(label);
-        add(Box.createHorizontalStrut(48));
+        add(Box.createHorizontalStrut(80));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -62,9 +69,10 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(IphoneInfoLabel label, ImeiLabel component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
 
         add(label);
-        add(Box.createHorizontalStrut(35));
+        add(Box.createHorizontalStrut(53));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -73,9 +81,10 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(IphoneInfoLabel label, Imei2Label component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
 
         add(label);
-        add(Box.createHorizontalStrut(62));
+        add(Box.createHorizontalStrut(97));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -84,9 +93,10 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(IphoneInfoLabel label, SerialNoLabel component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
 
         add(label);
-        add(Box.createHorizontalStrut(21));
+        add(Box.createHorizontalStrut(35));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -95,9 +105,10 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(IphoneInfoLabel label, ModelNoLabel component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
 
         add(label);
-        add(Box.createHorizontalStrut(9));
+        add(Box.createHorizontalStrut(20));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -106,9 +117,10 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(IphoneInfoLabel label, ProductNameLabel component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
 
         add(label);
-        add(Box.createHorizontalStrut(10));
+        add(Box.createHorizontalStrut(24));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -117,9 +129,10 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(IphoneInfoLabel label, ProductTypeLabel component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
 
         add(label);
-        add(Box.createHorizontalStrut(16));
+        add(Box.createHorizontalStrut(33));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -128,9 +141,10 @@ public class CommonGroupPanel extends JPanel {
     public CommonGroupPanel(IphoneInfoLabel label, ProductVersionLabel component) {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         setBackground(backgroundColor);
+        setOpaque(false);
 
         add(label);
-
+        add(Box.createHorizontalStrut(10));
         add(component);
 
         setAlignmentX(Component.LEFT_ALIGNMENT);

@@ -6,11 +6,14 @@ import java.awt.Graphics2D;
 import java.awt.RenderingHints;
 
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 public class InformationContainerPanel extends JPanel {
     public InformationContainerPanel() {
         setOpaque(false);
         setBackground(new Color(210, 210, 210));
+
+        setBorder(new EmptyBorder(10, 10, 10, 10));
     }
 
     @Override

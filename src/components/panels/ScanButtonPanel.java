@@ -113,7 +113,6 @@ public class ScanButtonPanel extends JPanel {
 
         CommandResult device = deviceService.detect();
 
-        //checks if there is a device currently connected
         // if (device.output.isBlank() && device.error.isBlank()) {
         //     System.out.println("No Device Detected!");
         //     return;
@@ -125,9 +124,9 @@ public class ScanButtonPanel extends JPanel {
         final int SPACING = 10;
 
         // --- EID ---
-        CommonGroupPanel eidPanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.EID.get()), new EidTextField());
-        infoContainer.add(eidPanel);
-        
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.EID.get()), new EidTextField()));
+
+        // --- COLOR ---
         if(Constants.IPHONE_8.get().equals(result.getProductType()) 
             || Constants.IPHONE_8_PLUS.get().equals(result.getProductType())) {
                 colorDropdown = new ColorTypeComboBox(result.getIphone8And8PlusColors());
@@ -169,42 +168,31 @@ public class ScanButtonPanel extends JPanel {
             || Constants.IPHONE_15_PRO_MAX.get().equals(result.getProductType())) {
                 colorDropdown = new ColorTypeComboBox(result.getIphone15ProAnd15ProMaxColors());
         }
-
-        // --- COLOR TYPE ---
-        CommonGroupPanel colorPanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.COLOR_TYPE.get()), colorDropdown);
-        infoContainer.add(colorPanel);
-
-        // --- STORAGE TYPE ---
-        CommonGroupPanel storageTypePanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.STORAGE_TYPE.get()), new StorageTypeComboBox(result.getStorageTypes()));
-        infoContainer.add(storageTypePanel);
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.COLOR_TYPE.get()), colorDropdown));
+        
+        // --- STORAGE ---
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.STORAGE_TYPE.get()), new StorageTypeComboBox(result.getStorageTypes())));
 
         // --- IMEI ---
-        CommonGroupPanel imeiPanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.IMEI.get()), new ImeiLabel(result.getImei()));
-        infoContainer.add(imeiPanel);
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.IMEI.get()), new ImeiLabel(result.getImei())));
 
         // --- IMEI2 ---
-        CommonGroupPanel imei2Panel = new CommonGroupPanel(new IphoneInfoLabel(Constants.IMEI2.get()), new Imei2Label(result.getImei2()));
-        infoContainer.add(imei2Panel);
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.IMEI2.get()), new Imei2Label(result.getImei2())));
 
         // --- SERIAL NO ---
-        CommonGroupPanel serialNoPanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.SERIAL_NUMBER.get()), new SerialNoLabel(result.getSerialNo()));
-        infoContainer.add(serialNoPanel);
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.SERIAL_NUMBER.get()), new SerialNoLabel(result.getSerialNo())));
 
         // --- MODEL NO ---
-        CommonGroupPanel modelNoPanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.MODEL_NUMBER.get()), new ModelNoLabel(result.getModel()));
-        infoContainer.add(modelNoPanel);
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.MODEL_NUMBER.get()), new ModelNoLabel(result.getModel())));
 
         // --- PRODUCT NAME ---
-        CommonGroupPanel productNamePanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.PRODUCT_NAME.get()), new ProductNameLabel(result.getProductName()));
-        infoContainer.add(productNamePanel);
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.PRODUCT_NAME.get()), new ProductNameLabel(result.getProductName())));
 
         // --- PRODUCT TYPE ---
-        CommonGroupPanel productTypePanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.PRODUCT_TYPE.get()), new ProductTypeLabel(result.getProductType()));
-        infoContainer.add(productTypePanel);
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.PRODUCT_TYPE.get()), new ProductTypeLabel(result.getProductType())));
 
         // --- PRODUCT VERSION ---
-        CommonGroupPanel productVersionPanel = new CommonGroupPanel(new IphoneInfoLabel(Constants.PRODUCT_VERSION.get()), new ProductVersionLabel(result.getProductVersion()));
-        infoContainer.add(productVersionPanel);
+        infoContainer.add(new CommonGroupPanel(new IphoneInfoLabel(Constants.PRODUCT_VERSION.get()), new ProductVersionLabel(result.getProductVersion())));
 
         infoContainer.revalidate();
         infoContainer.repaint();
